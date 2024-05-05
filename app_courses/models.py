@@ -72,8 +72,8 @@ class Course(models.Model):
     teacher = models.ForeignKey(CourseTeacher, on_delete=models.CASCADE,verbose_name='Преподователи')
     about_profession = models.ForeignKey("AboutProfession", on_delete=models.CASCADE,verbose_name='О профессии')
     course_program = models.ManyToManyField("CourseProgram", verbose_name='Программа курса')
-    education_benefit = models.ManyToManyField("EducationBenefit", verbose_name='Плюсы Курса')
-    major_benefit = models.ManyToManyField("MajorBenefit", verbose_name='Плюсы профессии')
+    # education_benefit = models.ManyToManyField("EducationBenefit", verbose_name='Плюсы Курса')
+    # major_benefit = models.ManyToManyField("MajorBenefit", verbose_name='Плюсы профессии')
 
     class Meta:
         verbose_name = _("Курс")
