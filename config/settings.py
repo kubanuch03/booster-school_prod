@@ -192,5 +192,5 @@ CORS_ALLOW_HEADERS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_USE_SESSIONS = True
-CSRF_TRUSTED_ORIGINS = ["https://back.horse-travel.com"]
+# CSRF_USE_SESSIONS = True
+# CSRF_TRUSTED_ORIGINS = ["https://back.horse-travel.com"]
