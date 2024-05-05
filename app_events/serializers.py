@@ -15,10 +15,10 @@ class EventSerializer(serializers.ModelSerializer):
     
     def get_image(self, obj):
         if obj.image:
-            return obj.image.url.split('/media/', 0)[-1]  # Получаем часть URL-адреса после '/media/'
+            return '/media/' + obj.image.url.split('/media/', 1)[-1]  # Добавляем '/media/' к началу части URL-адреса после '/media/'
         return None
 
     def get_extended_image(self, obj):
         if obj.extended_image:
-            return obj.extended_image.url.split('/media/', 0)[-1]  # Получаем часть URL-адреса после '/media/'
+            return '/media/' + obj.extended_image.url.split('/media/', 1)[-1]  # Добавляем '/media/' к началу части URL-адреса после '/media/'
         return None
