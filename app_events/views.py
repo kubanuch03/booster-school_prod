@@ -27,3 +27,9 @@ class EventListApiView(generics.ListAPIView):
     )
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
+
+
+class EventDetailApiView(generics.RetrieveAPIView):
+    queryset = Events.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [permissions.AllowAny]
