@@ -169,6 +169,7 @@ CORS_ALLOW_METHODS = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://back.horse-travel.com",
+    "http://195.38.164.129",
     "http://localhost:3000",
 ]
 
