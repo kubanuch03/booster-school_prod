@@ -14,8 +14,39 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls,name='admin'),
+    path('admin/logout/', admin.site.logout, name='logout'),
+
+    # path("users/", include("app_users.urls")),
+    path("articles/", include("app_articles.urls")),
+    path("reviews/", include("app_reviews.urls")),
+    path("events/", include("app_events.urls")),
+    path("courses/", include("app_courses.urls")),
+    path("miscellaneus/", include("app_miscellaneus.urls")),
+
+
+    # swagger
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
+    path(
+        "api/schema/redoc/",
+        SpectacularRedocView.as_view(url_name="schema"),
+        name="redoc",)
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
