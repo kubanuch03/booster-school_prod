@@ -26,10 +26,7 @@ services:
       - .env
     volumes:
       - db_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: booster  # Указываем имя базы данных
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123
+    
 
 
 
