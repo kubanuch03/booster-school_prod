@@ -14,11 +14,11 @@ RUN apt-get update && apt-get install -y libcrypt1
 WORKDIR /app
 
 # Copy the requirements file
-COPY requirement.txt /app/
+COPY requirements.txt /app/
 
 # Install dependencies
 RUN pip install  gunicorn --no-cache-dir
-RUN pip install --no-cache-dir -r requirement.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 
 # Run the entrypoint script when the container starts
