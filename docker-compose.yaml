@@ -32,41 +32,44 @@ services:
       POSTGRES_PASSWORD: 123
 
 
-  # nginx:
-  #    build:
-  #      context: .
-  #      dockerfile: nginx/Dockerfile
-  #    ports:
-  #      - "80:80"
-  #    volumes:
-  #     - static_volume:/usr/src/app/static
-  #     - media_volume:/usr/src/app/media
-  #    depends_on:
-  #      - web
-
-
   nginx:
-    image: jwilder/nginx-proxy:1.2
-    ports:
-    - "80:80"
-    - "443:443"
-    volumes:
-    - ./nginx/default.conf:/etc/nginx/vhost.d/nginx.conf
-    - static_volume:/usr/src/app/static
-    - media_volume:/usr/src/app/media
-    - /var/run/docker.sock:/tmp/docker.sock:ro
-    - html:/usr/share/nginx/html
-    - vhost:/etc/nginx/vhost.d
-    - certs:/etc/nginx/certs
+     build:
+       context: .
+       dockerfile: nginx/Dockerfile
+     ports:
+       - "80:80"
+       - "443": "443"
 
-  acme_companion:
-    image: nginxproxy/acme-companion:2.2.10
-    container_name: acme_companion
-    volumes_from:
-    - nginx
-    volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
-    - acme:/etc/acme.sh
+
+     volumes:
+      - static_volume:/usr/src/app/static
+      - media_volume:/usr/src/app/media
+     depends_on:
+       - web
+
+
+  # nginx:
+  #   image: jwilder/nginx-proxy:1.2
+  #   ports:
+  #   - "80:80"
+  #   - "443:443"
+  #   volumes:
+  #   - ./nginx/default.conf:/etc/nginx/vhost.d/nginx.conf
+  #   - static_volume:/usr/src/app/static
+  #   - media_volume:/usr/src/app/media
+  #   - /var/run/docker.sock:/tmp/docker.sock:ro
+  #   - html:/usr/share/nginx/html
+  #   - vhost:/etc/nginx/vhost.d
+  #   - certs:/etc/nginx/certs
+
+  # acme_companion:
+  #   image: nginxproxy/acme-companion:2.2.10
+  #   container_name: acme_companion
+  #   volumes_from:
+  #   - nginx
+  #   volumes:
+  #   - /var/run/docker.sock:/var/run/docker.sock
+  #   - acme:/etc/acme.sh
 
 
 
@@ -75,7 +78,7 @@ volumes:
   db_data:
   static_volume:
   media_volume:
-  certs:
-  acme:
-  vhost:
-  html:
+  # certs:
+  # acme:
+  # vhost:
+  # html:
