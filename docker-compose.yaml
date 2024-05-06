@@ -14,9 +14,9 @@ services:
       - 8000:8000
     depends_on:
       - db
-    # environment:
-    #   - VIRTUAL_HOST=back.horse-travel.com
-    #   - LETSENCRYPT_HOST=back.horse-travel.com
+    environment:
+      - VIRTUAL_HOST=back.horse-travel.com
+      - LETSENCRYPT_HOST=back.horse-travel.com
 
 
   db:
