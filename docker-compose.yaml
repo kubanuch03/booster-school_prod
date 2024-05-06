@@ -75,7 +75,7 @@ volumes:
   db_data:
   static_volume:
   media_volume:
-  # certs:
-  # acme:
-  # vhost:
-  # html:
+  certs:
+  acme:
+  vhost:
+  html:
